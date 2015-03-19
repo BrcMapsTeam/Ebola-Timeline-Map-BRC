@@ -42,7 +42,7 @@ function generateBarChart(id,data){
     
     x.domain(data.map(function(d) {return formatDate(d.Date); }));
     y.domain([0, max]);
-    xAxis.tickValues(["31 Mar","14 Apr", "28 Apr", "12 May","26 May","09 Jun","23 Jun","07 Jul","21 Jul","04 Aug","18 Aug","01 Sep","15 Sep","29 Sep","13 Oct","27 Oct","10 Nov","24 Nov","08 Dec","22 Dec","05 Jan","19 Jan","02 Feb","16 Feb"]);
+    xAxis.tickValues(["31 Mar", "28 Apr", "26 May","23 Jun","21 Jul","18 Aug","15 Sep","13 Oct","10 Nov","08 Dec","05 Jan","02 Feb","02 Mar"]);
     
     svg.append("g")
         .attr("class", "x axis")
@@ -102,14 +102,14 @@ function generateBarChart(id,data){
         .attr("y", 10)
         .attr("width", 10)
         .attr("height", 10)
-        .attr("fill","steelblue");
+        .attr("fill","#707070");
 
     g.append("rect")
         .attr("x", width+10)
         .attr("y", 30)
         .attr("width", 10)
         .attr("height", 10)
-        .attr("fill","red");
+        .attr("fill","#b21226");
 
     g.append("text")
         .attr("x",width+25)
@@ -201,56 +201,30 @@ function generateMap(){
     
     g.append("rect")
         .attr("x", 0)
-        .attr("y", 220)
+        .attr("y", 260)
         .attr("width", 10)
         .attr("height", 10)
-        .attr("fill","#ffffff")
+        .attr("fill",colors[0])
         .attr("stroke","#000000")
         .attr("stroke-width",1);
 
     g.append("text")
         .attr("x",15)
-        .attr("y",228)
+        .attr("y",268)
         .text("No cases")
         .attr("font-size","10px");    
         
     g.append("rect")
         .attr("x", 0)
-        .attr("y", 240)
-        .attr("width", 10)
-        .attr("height", 10)
-        .attr("fill","#ffe082");
-
-    g.append("text")
-        .attr("x",15)
-        .attr("y",248)
-        .text("1 to 9 cases in the last 3 weeks")
-        .attr("font-size","10px");
-
-    g.append("rect")
-        .attr("x", 0)
-        .attr("y", 260)
-        .attr("width", 10)
-        .attr("height", 10)
-        .attr("fill","#ffbd13");
-
-    g.append("text")
-        .attr("x",15)
-        .attr("y",268)
-        .text("10 to 99 cases in the last 3 weeks")
-        .attr("font-size","10px");
-
-    g.append("rect")
-        .attr("x", 0)
         .attr("y", 280)
         .attr("width", 10)
         .attr("height", 10)
-        .attr("fill","#ff8053");
+        .attr("fill",colors[1]);
 
     g.append("text")
         .attr("x",15)
         .attr("y",288)
-        .text("100 to 199 cases in the last 3 weeks")
+        .text("1 to 9 cases in the last 3 weeks")
         .attr("font-size","10px");
 
     g.append("rect")
@@ -258,11 +232,37 @@ function generateMap(){
         .attr("y", 300)
         .attr("width", 10)
         .attr("height", 10)
-        .attr("fill","#ff493d");
+        .attr("fill",colors[2]);
 
     g.append("text")
         .attr("x",15)
         .attr("y",308)
+        .text("10 to 99 cases in the last 3 weeks")
+        .attr("font-size","10px");
+
+    g.append("rect")
+        .attr("x", 0)
+        .attr("y", 320)
+        .attr("width", 10)
+        .attr("height", 10)
+        .attr("fill",colors[3]);
+
+    g.append("text")
+        .attr("x",15)
+        .attr("y",328)
+        .text("100 to 199 cases in the last 3 weeks")
+        .attr("font-size","10px");
+
+    g.append("rect")
+        .attr("x", 0)
+        .attr("y", 340)
+        .attr("width", 10)
+        .attr("height", 10)
+        .attr("fill",colors[4]);
+
+    g.append("text")
+        .attr("x",15)
+        .attr("y",348)
         .text("200 or more cases in the last 3 weeks")
         .attr("font-size","10px");
     /*
@@ -313,7 +313,7 @@ function generateMap(){
 function transitionMap(){
     
     
-    $('#week').html("<h4>A map of suspected and confirmed cases in the previous 3 weeks up to the week ending " + mapSettings[currentWeek].Date + "</h4>");
+    $('#week').html("<h4>A map of cases for the week ending " + mapSettings[currentWeek].Date + "</h4>");
     
     var projection = d3.geo.mercator()
         .center([mapSettings[currentWeek].lng,mapSettings[currentWeek].lat])
@@ -356,8 +356,6 @@ function transitionMap(){
 }
 
 function convertCasesToColor(cases){
-    
-    var colors = ["#ffffff","#ffe082","#ffbd13","#ff8053","#ff493d"];
 
     if(cases==0){
         c=0;
@@ -387,7 +385,7 @@ function formatDate(date){
 }
 
 
-
+var colors = ["#ffffff","#fee5d9","#fcae91","#fb6a4a","#b21226"];
 var currentWeek=0;
 generateBarChart('#bar_chart',totalCasesAndDeaths);
 d3.select("#barSelect"+currentWeek).attr("opacity",0.15);
