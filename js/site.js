@@ -224,7 +224,7 @@ function generateMap(){
     g.append("text")
         .attr("x",15)
         .attr("y",288)
-        .text("1 to 9 cases in the last 3 weeks")
+        .text("1 to 9 cases in the last week")
         .attr("font-size","10px");
 
     g.append("rect")
@@ -237,7 +237,7 @@ function generateMap(){
     g.append("text")
         .attr("x",15)
         .attr("y",308)
-        .text("10 to 99 cases in the last 3 weeks")
+        .text("10 to 99 cases in the last week")
         .attr("font-size","10px");
 
     g.append("rect")
@@ -250,7 +250,7 @@ function generateMap(){
     g.append("text")
         .attr("x",15)
         .attr("y",328)
-        .text("100 to 199 cases in the last 3 weeks")
+        .text("100 to 199 cases in the last week")
         .attr("font-size","10px");
 
     g.append("rect")
@@ -263,7 +263,7 @@ function generateMap(){
     g.append("text")
         .attr("x",15)
         .attr("y",348)
-        .text("200 or more cases in the last 3 weeks")
+        .text("200 or more cases in the last week")
         .attr("font-size","10px");
     /*
     g.append("circle")
@@ -313,7 +313,7 @@ function generateMap(){
 function transitionMap(){
     
     
-    $('#week').html("<h4>A map of cases for the week ending " + mapSettings[currentWeek].Date + "</h4>");
+    $('#week').html("<h4>A regional of weekly new cases</h4>");
     
     var projection = d3.geo.mercator()
         .center([mapSettings[currentWeek].lng,mapSettings[currentWeek].lat])
