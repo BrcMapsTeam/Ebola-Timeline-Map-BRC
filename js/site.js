@@ -313,7 +313,7 @@ function generateMap(){
 function transitionMap(){
     
     
-    $('#week').html("<h4>A regional of weekly new cases</h4>");
+    $('#week').html("<h4>Regional map of new weekly cases </h4>");
     
     var projection = d3.geo.mercator()
         .center([mapSettings[currentWeek].lng,mapSettings[currentWeek].lat])
